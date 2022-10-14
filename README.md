@@ -1,1 +1,1 @@
-##some useful jquery effect
+## some useful jquery effect

@@ -1,0 +1,36 @@
+<div class="block columnSet" style="float:left; width:50%;background:#d3dce3;margin-left:2%;margin-top:0.5%;">
+    <div style="margin:0 auto;width:98%;">
+      <form>
+        <input type="button" value="選擇欄位" class="columnSel">
+        <table border=1 style="margin-top:-1%;">
+          <caption>欄位列表</caption>
+          <thead>
+            <th>類別代碼</th><th>類別名稱</th><th colspan=2>類別格式</th><th style="width:10%;"></th>
+          </thead>
+          <tbody></tbody>
+          <tfoot>
+            <tr style="display:none;" class="nodata"><td colspan=5><p>請選擇欄位</p></td></tr>
+            <tr style="display:none;">
+              <td><span style='font-size:22px;float:left;'>&#8693;</span></td><td></td><td></td><td></td>
+              <td><input type="button" value="儲存" style="font-size:16px;" class="modBtn"></td>
+            </tr>
+            <tr style="display:none;" id="storeAll"><td colspan=5><input type="button" value="一鍵儲存" class="storeAll"></td></tr>
+          </tfoot>
+        </table>
+      </form>
+    </div>
+</div>
+  <div id="block"></div>
+<div style="border:1px grey solid;display:none;" class="dis">
+  <div style="border:1px solid black;margin:10% 10% 10%;background-color:#d3dce3;overflow: auto;max-height:400px;">
+    <form id="fieldChoose"><table border=1 class="fieldChoose">
+      <caption>類別列表</caption>
+      <thead><th></th><th>欄位代碼</th><th>欄位名稱</th></thead>
+      <tbody></tbody>
+      <tfoot><tr><td colspan=3>
+        <input type="button" value="確定" class="chk">
+        <input type="reset" value="取消" class="del">
+      </td></tr></tfoot>
+    </table></form>
+  </div>
+</div>

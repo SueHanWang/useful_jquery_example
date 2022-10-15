@@ -34,3 +34,77 @@
     </table></form>
   </div>
 </div>
+
+<script>
+$(function(){
+let columnVal,columnName,array=[],delarray=[],coltype,tr;
+  function nodata(){
+    if($('.columnSet tbody tr').length<=0){
+      $('.nodata').show();
+      $('#storeAll').hide();
+    } else {
+      $('.nodata').hide();
+      $('#storeAll').show();
+    }
+  }
+  nodata();
+  function getColumnVal(){    
+    $('input[name="colChk"]').each(function(){
+      if(($(this).prop('checked')==true) && ((array.indexOf(`${$(this).val()}`))== -1)){
+        $(this).attr('checked',true);
+        array.push($(this).val());
+      	columnVal = $(this).val();
+        columnName = $(this).parent().parent().find('td:last').text();
+        coltype = parseInt($(this).parent().parent().find('td input:last').val());        
+        tr = $('.columnSet tfoot tr').eq(1).clone(true);
+        $(tr).find('td').eq(0).html(columnVal);
+        $(tr).find('td').eq(1).html(columnName);
+        switch(coltype){
+          case 1:
+            $(tr).find('td').eq(2).html(`<input type='text' placeholder='請輸入最大值' class='maxVal'>`);
+            $(tr).find('td').eq(3).html(`<input type='text' placeholder='請輸入最小值'>`);
+          break;
+          case 2:
+            $(tr).find('td').eq(2).attr('colspan',2).html(`<input type='text' placeholder='請輸入單一值'>`);
+            $(tr).find('td').eq(3).css('display','none');
+          break;
+          case 3:
+            $(tr).find('td').eq(2).attr('colspan',2).html(`<input type='text' placeholder='請輸入文字'>`);
+            $(tr).find('td').eq(3).css('display','none');
+          break;
+          case 4:
+            $(tr).find('td').eq(2).attr('colspan',2).html(`<select><option>通過</option><option>不通過</option></select>`);
+            $(tr).find('td').eq(3).css('display','none');
+          break;
+        }
+        $(tr).appendTo( $('.columnSet tbody') ).show();
+      } 
+      if($(this).prop('checked')==false){
+        $(this).attr('checked',false);
+        if(array.includes($(this).val())){
+      	  array.splice(array.indexOf($(this).val()),1);
+          $('.columnSet tbody').find(`tr:contains(${$(this).val()})`).remove();
+        } 
+      }
+    })
+    nodata();
+  }
+  $('.columnSel').on('click',function(){
+    $('#block').show();
+    $('.dis').show();
+  })
+  $('.chk').on('click',function(){
+    $('#block').hide();
+    $('.dis').hide();
+    getColumnVal();    
+    console.log('array:'+array);
+    console.log('delarray:'+delarray);
+  })
+  $('.del').on('click',function(){
+    $('#block').hide();
+    $('.dis').hide();
+    $('#fieldChoose')[0].reset();
+  })
+
+}
+</script>
